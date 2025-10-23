@@ -1,0 +1,13 @@
+home=https://www.doc.gold.ac.uk/usr/360/
+
+home=https://www.doc.gold.ac.uk/usr/360/about
+
+home=https://www.doc.gold.ac.uk/usr/360/contact
+
+home=https://www.doc.gold.ac.uk/usr/360/date
+
+home=https://www.doc.gold.ac.uk/usr/360/chain
+
+
+
+
