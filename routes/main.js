@@ -57,6 +57,9 @@ router.get("/", (req, res) => res.send(`
  <p style="color: rgb(255, 255, 255)">- To learn more about me, visit the <a href="/about" style="color: rgb(255, 255, 255)">About Me</a> page.</p>
  <p style="color: rgb(255, 255, 255)">- To contact me, visit the <a href="/contact" style="color: rgb(255, 255, 255)">Contact Me</a> page.</p>
  <p style="color: rgb(255, 255, 255)">- To see the current date and time, visit the <a href="/date" style="color: rgb(255, 255, 255)">Date</a> page.</p>
+ <p style="color: rgb(255, 255, 255)">- To see a personalized welcome message, visit <a href="/welcome/YourName" style="color: rgb(255, 255, 255)">Welcome</a> (replace "YourName" with your actual name).</p>
+ <p style="color: rgb(255, 255, 255)">- To see a demonstration of chained route handlers, visit the <a href="/chain" style="color: rgb(255, 255, 255)">Chain</a> page.</p>
+ <p style="color: rgb(255, 255, 255)">- To see a static HTML file, visit the <a href="/file" style="color: rgb(255, 255, 255)">File</a> page.</p>
  
 
  <p style="color: rgb(255, 255, 255)">:)</p>
@@ -91,7 +94,8 @@ router.get("/contact", (req, res) => res.send (`
         <head><title>Contact Marzhan</title></head>
         <body style="background-color: lightgreen; font-family: Verdana;">
             <h1>Contact Me</h1>
-            <p>Email: manbi001@campus.goldsmiths.ac.uk</p>
+            <p>If you'd like to get in touch, feel free to reach out via email:</p>
+            <p>Email: <a href="mailto:manbi001@campus.goldsmiths.ac.uk">manbi001@campus.goldsmiths.ac.uk</a></p>
             <p>Let's get in touch!</p>
         </body>
         </html>`)); //this also sends an h1 element as a response
@@ -103,6 +107,8 @@ router.get("/date", (req, res) => res.send (`
     
 <!DOCTYPE html>
 <html>
+<body style="background-color: purple; font-family: Verdana;">
+
 <body>
 
 <h1>Current date</h1>
@@ -139,14 +145,27 @@ router.get('/chain', (req, res, next) => {
     // attach some data to the request object for the next handler
     req.handledBy = 'handler 1';
 
-    next();
+    next(); // pass control to the next handler
 
 }, (req, res) => {
-
     // second handler continues and ends the response
     res.write(`<p>Handler 2: Received marker = ${req.handledBy}</p>`);
     res.end('<p>Chain complete.</p>');
 });
+
+//these handlers are for the /chain route and demonstrate the use of next()
+// First handler writes a header and calls next(), second handler finishes the response
+// The first handler writes a partial response and attaches data to the request object
+// The second handler completes the response using that data
+
+
+//file route 
+router.get('/file', (req, res) => {
+    res.sendFile('a.html', { root: __dirname }); //serve the static HTML file located in the same directory as this main.js file
+});
+
+    
+
 
 
 // Export the router object so index.js can access it

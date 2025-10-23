@@ -6,7 +6,12 @@ home=https://www.doc.gold.ac.uk/usr/360/contact
 
 home=https://www.doc.gold.ac.uk/usr/360/date
 
+home=https://www.doc.gold.ac.uk/usr/360/welcome
+
 home=https://www.doc.gold.ac.uk/usr/360/chain
+
+home=https://www.doc.gold.ac.uk/usr/360/file
+
 
 
 
